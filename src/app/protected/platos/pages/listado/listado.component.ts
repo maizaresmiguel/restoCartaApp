@@ -9,20 +9,16 @@ import { PlatosService } from 'src/app/protected/services/platos.service';
   styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit {
-
-
  
  platos: MenuItem[]=[];
- 
-  constructor(
+
+ constructor(
     private router: Router,
     private platosService: PlatosService  
   ) {}
-
   
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.platosService.getPlatos()
-    //.subscribe( resp => { console.log(resp)
      .subscribe( resp => { this.platos = resp.menuItems
     })
    ;

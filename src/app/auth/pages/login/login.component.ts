@@ -11,19 +11,17 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent {
   
-  constructor(private fb: FormBuilder, 
-              private router: Router,
-              private authservice: AuthService) {}
-
-
-  miFormulario: FormGroup = this.fb.group({
+  public miFormulario: FormGroup = this.fb.group({
     email: ['challenge@alkemy.org', [Validators.required, Validators.email]],
     password: ['react', Validators.required],
   });
 
+  constructor(private fb: FormBuilder, 
+              private router: Router,
+              private authservice: AuthService) {}
 
-  login() {
-    // console.log(this.miFormulario.value);
+  public login() {
+   
     const {email, password } = this.miFormulario.value; // obtener el psw y email del formulario
     
     this.authservice.login(email, password)
@@ -33,7 +31,6 @@ export class LoginComponent {
           console.log('========>',resp);
           Swal.fire('Error',resp.error, 'error');
           //TODO  corregir el msj de error no muestra  
-          //
           
         }else{
           localStorage.setItem('token', resp.token);

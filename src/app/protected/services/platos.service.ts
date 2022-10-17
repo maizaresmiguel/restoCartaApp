@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BusquedaResponse } from '../interfaces/busquedaResult-interfaces';
+import { BusquedaResponse } from '../interfaces/busqueda-result-interfaces';
 import { NutrientesResponse } from '../interfaces/nutrientes-interfaces';
 import { MenuItem, MenuItemResponse, PlatoResponse } from '../interfaces/plato-interface';
 
@@ -19,22 +19,19 @@ export class PlatosService {
 
   constructor( private http: HttpClient) { }
 
-  getPlatos(){
-
+  public getPlatos(){
     const params = this.params.append('query', 'burger');
     const url = `${ this.baseUrlPlatos}/food/menuItems/search`;
-    // const headers = new HttpHeaders()
-    //   .set('apiKey', apikey);
     return this.http.get<MenuItemResponse>(url, { params });
   }
 
-  getPlatoPorId( id:string ){
+  public getPlatoPorId( id:string ){
     const params = this.params;
     const url = `${ this.baseUrlPlatos}/food/menuItems/${id}`;
     return this.http.get<NutrientesResponse>(url, { params });
   }
 
-  getBuscarPlato(termino:string){
+  public getBuscarPlato(termino:string){
     const params = this.params.append('query', termino);
     const url = `${ this.baseUrlPlatos}/food/menuItems/suggest?number=2`;
       return this.http.get<BusquedaResponse>(url, { params });

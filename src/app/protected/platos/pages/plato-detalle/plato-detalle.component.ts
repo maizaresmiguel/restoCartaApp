@@ -12,27 +12,25 @@ import { PlatosService } from 'src/app/protected/services/platos.service';
   styleUrls: ['./plato-detalle.component.css']
 })
 export class PlatoDetalleComponent implements OnInit {
+  
+  public nutrientes: Nutrient[]=[];
 
   constructor( private activateRoute: ActivatedRoute,
                private platoService: PlatosService,
                private router: Router ) { }
 
-  nutrientes: Nutrient[]=[];
+ 
   
   ngOnInit(): void {
-
     this.activateRoute.params
       .pipe(
         switchMap( 
           ({id}) => this.platoService.getPlatoPorId(id)
-        )
-
-      )
-     // .subscribe(plato => console.log((plato)));
+        ))
        .subscribe( nutrientes  => this.nutrientes = nutrientes.nutrition.nutrients);
   }
 
-  regresar(){
+  public regresar(){
     this.router.navigateByUrl('/dashboard/listado')
   }
 
