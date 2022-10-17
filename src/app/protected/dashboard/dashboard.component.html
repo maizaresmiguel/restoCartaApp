@@ -1,5 +1,84 @@
-<p>dashboard works!</p>
-<hr>
-<h1>usuario autenticado</h1>
 
-<button (click)="logout()"> logout </button>
+<!-- usuario autenticado -->
+<mat-toolbar>
+    <button mat-icon-button 
+            *ngIf="sidenav.mode === 'over'" 
+            (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    Menu
+    <span class="spacer"></span>
+    <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+       
+            <span>Logout</span>        
+    </button>
+</mat-toolbar>
+    
+<mat-sidenav-container>
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+            <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+        
+            <h4 class="name">John Smith</h4>
+            <p class="designation">Welcome</p>
+        
+            <mat-divider></mat-divider>
+
+            <button mat-button class="menu-button" 
+                                [routerLink]="['./buscar']" 
+                                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>search</mat-icon>
+                <span>Buscar Plato</span>
+                <!-- <a routerLink="./buscar">
+                    <span>Buscar Plato</span>
+                </a> -->
+                
+            </button>
+           
+            <button mat-button class="menu-button"  
+                                [routerLink]="['./listado']"
+                                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>format_list_numbered_rtl</mat-icon>
+                <span>Listado</span>
+            </button>
+           
+           
+    
+            <mat-divider></mat-divider>
+    
+            <button mat-button class="menu-button" (click)="logout()">
+                <mat-icon mat-list-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+    
+        </mat-sidenav>
+
+        <!-- <mat-sidenav-content>
+
+           
+            <div class="content mat-elevation-z8">
+               
+                
+                <h3>usuario logueado dashboard</h3>
+
+                <router-outlet></router-outlet>
+               
+              
+
+
+
+
+            </div>
+        </mat-sidenav-content> -->
+
+        <div class="container">
+            <router-outlet></router-outlet>
+
+        </div>
+       
+</mat-sidenav-container>

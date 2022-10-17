@@ -1,0 +1,18 @@
+<p>Menu listado</p>
+<mat-divider></mat-divider>
+<br>
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+      fxLayoutAlign="center"
+      fxLayoutGap="20">
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         *ngFor="let plato of platos">
+
+        <app-plato-tarjeta [plato]="plato"> </app-plato-tarjeta>
+    </div>
+
+    
+</div>
